@@ -1,11 +1,11 @@
-﻿#include "OpenCVBinaryTreshold.h"
+﻿#include "OpenCVBinaryThreshold.h"
 
 #include <sstream>
 #include <opencv2/imgproc/imgproc.hpp>
 
 namespace ImageBinarize
 {
-	OpenCVBinaryTreshold::OpenCVBinaryTreshold()
+	OpenCVBinaryThreshold::OpenCVBinaryThreshold()
 	{
 		//	default params
 		this->_options["treshold"] = 127;
@@ -13,12 +13,12 @@ namespace ImageBinarize
 		this->_options["max_value"] = 255;
 	}
 
-	OpenCVBinaryTreshold::~OpenCVBinaryTreshold()
+	OpenCVBinaryThreshold::~OpenCVBinaryThreshold()
 	{
 
 	}
 
-	bool OpenCVBinaryTreshold::process(const Image &in, Image &out)
+	bool OpenCVBinaryThreshold::process(const Image &in, Image &out)
 	{
 		const cv::Mat &src = in.asOpenCVMat();
 		cv::Mat &dst = out.asOpenCVMat();
@@ -38,12 +38,12 @@ namespace ImageBinarize
 		return true;
 	}
 
-	void OpenCVBinaryTreshold::setOption(const std::string& name, double value)
+	void OpenCVBinaryThreshold::setOption(const std::string& name, double value)
 	{
 		this->_options[name] = value;
 	}
 
-	std::string OpenCVBinaryTreshold::metaData()
+	std::string OpenCVBinaryThreshold::metaData()
 	{
 		std::ostringstream ss;
 		ss << "{";

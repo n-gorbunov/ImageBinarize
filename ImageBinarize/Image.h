@@ -2,38 +2,39 @@
 
 #include <string>
 #include <vector>
-#include <opencv2\core\mat.hpp>
+#include <opencv2/core/mat.hpp>
 
 namespace ImageBinarize
 {
 
+	//	TODO: move to separate file
 	class Color
 	{
 	public:
-		Color(unsigned char red, unsigned char green, unsigned char blue)
+		Color(uint8_t red, uint8_t green, uint8_t blue)
 			: _red(red)
 			, _green(green)
 			, _blue(blue)
 		{
 		}
 
-		unsigned char red() const
+		uint8_t red() const
 		{
 			return this->_red;
 		}
-		unsigned char green() const
+		uint8_t green() const
 		{
 			return this->_green;
 		}
-		unsigned char blue() const
+		uint8_t blue() const
 		{
 			return this->_blue;
 		}
 
 	private:
-		unsigned char _red;
-		unsigned char _green;
-		unsigned char _blue;
+		uint8_t _red;
+		uint8_t _green;
+		uint8_t _blue;
 	};
 	
 	class Image
@@ -41,15 +42,17 @@ namespace ImageBinarize
 	public:
 		Image();
 		Image(int width, int height);
+		Image(const std::string& path);
 		//	assuming data is in BGR format
 		Image(const unsigned char *data, int width, int height);
 		Image(const cv::Mat &sourceMat);
 		Image(const std::vector<unsigned char> &data, int width, int height);
 		~Image();
 
-		//	TODO: implement
-		//void load(const std::string &path);
-		//void save(const std::string &path);
+		void clear();
+		bool isNull() const;
+
+		void convertToGrayscale();
 
 		bool isEqualFormat(const Image &other) const;
 
@@ -64,6 +67,9 @@ namespace ImageBinarize
 
 		void setMetaInfo(const std::string &value);
 		std::string metaInfo() const;
+
+		bool loadFromFile(const std::string &path);
+		bool saveToFile(const std::string &path);
 
 	private:
 		cv::Mat _mat;

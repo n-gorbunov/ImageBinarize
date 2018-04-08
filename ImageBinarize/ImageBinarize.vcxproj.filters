@@ -24,7 +24,13 @@
     <ClCompile Include="DumbBinarize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OpenCVBinaryTreshold.cpp">
+    <ClCompile Include="ImageHistogram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OtsuThreshold.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCVBinaryThreshold.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +47,16 @@
     <ClInclude Include="DumbBinarize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OpenCVBinaryTreshold.h">
+    <ClInclude Include="ImageHistogram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OtsuThreshold.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenCVBinaryThreshold.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

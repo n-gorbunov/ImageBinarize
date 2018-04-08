@@ -1,16 +1,16 @@
 ﻿#pragma once
 
-#include <map>
+
 #include "IBinarizationAlgorithm.h"
 
 namespace ImageBinarize
 {
 
-	class OpenCVBinaryTreshold : public IBinarizationAlgorithm
+	class OpenCVBinaryThreshold : public BinarizationAlgorithm
 	{
 	public:
-		OpenCVBinaryTreshold();
-		~OpenCVBinaryTreshold();
+		OpenCVBinaryThreshold();
+		~OpenCVBinaryThreshold();
 
 		virtual bool process(const Image &in, Image &out) override;
 		virtual void setOption(const std::string& name, double value) override;

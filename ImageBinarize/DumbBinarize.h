@@ -7,7 +7,7 @@
 namespace ImageBinarize
 {
 
-	class DumbBinarize : public IBinarizationAlgorithm
+	class DumbBinarize : public BinarizationAlgorithm
 	{
 	public:
 		DumbBinarize(double treshold = 127);

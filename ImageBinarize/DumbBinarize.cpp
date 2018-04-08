@@ -1,7 +1,7 @@
 ﻿#include "DumbBinarize.h"
 
 #include <sstream>
-#include <opencv2\core\matx.hpp>
+#include <opencv2/core/matx.hpp>
 
 using namespace cv;
 

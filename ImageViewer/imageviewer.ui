@@ -16,11 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QSplitter" name="splitter">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
+     <widget class="QStackedWidget" name="switcher"/>
     </item>
    </layout>
   </widget>
@@ -38,9 +34,24 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionCompare"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuInfo">
+    <property name="title">
+     <string>Info</string>
+    </property>
+    <addaction name="actionHistogram"/>
+   </widget>
+   <widget class="QMenu" name="menuProcess">
+    <property name="title">
+     <string>Process</string>
+    </property>
+    <addaction name="actionGrayscale"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuProcess"/>
+   <addaction name="menuInfo"/>
   </widget>
   <action name="actionOpen">
    <property name="text">
@@ -55,6 +66,21 @@
   <action name="actionTreshold">
    <property name="text">
     <string>Treshold</string>
+   </property>
+  </action>
+  <action name="actionCompare">
+   <property name="text">
+    <string>Compare</string>
+   </property>
+  </action>
+  <action name="actionHistogram">
+   <property name="text">
+    <string>Image Histogram</string>
+   </property>
+  </action>
+  <action name="actionGrayscale">
+   <property name="text">
+    <string>Grayscale</string>
    </property>
   </action>
  </widget>

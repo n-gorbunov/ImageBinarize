@@ -1,8 +1,14 @@
 ﻿#include "Image.h"
 
-#include <opencv2\core\core.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include "opencv2/imgproc/imgproc.hpp"
 
 using namespace cv;
+
+//	DEBUG
+#include <iostream>
+//	END DEBUG
 
 namespace ImageBinarize
 {
@@ -14,6 +20,11 @@ namespace ImageBinarize
 	Image::Image(int width, int height)
 		: _mat(Mat(height, width, CV_8UC3, cvScalar(0, 0, 0)))
 	{
+	}
+
+	Image::Image(const std::string& path)
+	{
+		this->loadFromFile(path);
 	}
 	
 	Image::Image(const unsigned char *data, int width, int height)
@@ -34,6 +45,34 @@ namespace ImageBinarize
 	Image::~Image()
 	{
 	}
+
+	void Image::clear()
+	{
+		this->_mat = cv::Mat();
+	}
+
+	bool Image::isNull() const
+	{
+		return !this->_mat.data;
+	}
+
+	void Image::convertToGrayscale()
+	{
+		Mat gray;
+		cvtColor(this->_mat, gray, COLOR_BGR2GRAY);
+		this->_mat = gray;
+	}
+
+	/*bool Image::fromFile(const std::string &path)
+	{
+		this->_mat = imread(path, cv::IMREAD_COLOR);
+		if (!this->_mat.data) {
+			this->_mat = Mat();
+			return false;
+		}
+
+		return true;
+	}*/
 
 	bool Image::isEqualFormat(const Image &other) const
 	{
@@ -88,6 +127,31 @@ namespace ImageBinarize
 	std::string Image::metaInfo() const
 	{
 		return std::string();
+	}
+
+	bool Image::loadFromFile(const std::string &path)
+	{
+		if (path.empty())
+			return false;
+
+		Mat tmp = imread(path, cv::IMREAD_ANYCOLOR);
+		if (!tmp.data)
+			return false;
+
+		this->_mat = tmp;
+		return true;
+	}
+
+	bool Image::saveToFile(const std::string &path)
+	{
+		if (path.empty())
+			return false;
+
+		if (this->isNull())
+			return false;
+
+		imwrite(path, this->_mat);
+		return true;
 	}
 
 }

@@ -1,36 +1,36 @@
-﻿#include "OpenDialog.h"
+﻿#include "OpenForCompareDialog.h"
 
 #include <QtCore/QSettings>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFileDialog>
 
-OpenDialog::OpenDialog(QWidget* parent, Qt::WindowFlags flags)
+OpenForCompareDialog::OpenForCompareDialog(QWidget* parent, Qt::WindowFlags flags)
 	: QDialog(parent, flags)
 {
 	this->_ui.setupUi(this);
 
-	QObject::connect(this->_ui.browseOriginalPath, &QPushButton::clicked, this, &OpenDialog::onBrowseOriginal);
-	QObject::connect(this->_ui.browseProcessedPath, &QPushButton::clicked, this, &OpenDialog::onBrowseProcessed);
-	QObject::connect(this->_ui.buttonBox, &QDialogButtonBox::accepted, this, &OpenDialog::onAccepted);
-	QObject::connect(this->_ui.buttonBox, &QDialogButtonBox::rejected, this, &OpenDialog::reject);
+	QObject::connect(this->_ui.browseOriginalPath, &QPushButton::clicked, this, &OpenForCompareDialog::onBrowseOriginal);
+	QObject::connect(this->_ui.browseProcessedPath, &QPushButton::clicked, this, &OpenForCompareDialog::onBrowseProcessed);
+	QObject::connect(this->_ui.buttonBox, &QDialogButtonBox::accepted, this, &OpenForCompareDialog::onAccepted);
+	QObject::connect(this->_ui.buttonBox, &QDialogButtonBox::rejected, this, &OpenForCompareDialog::reject);
 }
 
-OpenDialog::~OpenDialog()
+OpenForCompareDialog::~OpenForCompareDialog()
 {
 
 }
 
-QString OpenDialog::originalPath() const
+QString OpenForCompareDialog::originalPath() const
 {
 	return this->_ui.originalPath->text();
 }
 
-QString OpenDialog::processedPath() const
+QString OpenForCompareDialog::processedPath() const
 {
 	return this->_ui.processedPath->text();
 }
 
-void OpenDialog::onBrowseOriginal()
+void OpenForCompareDialog::onBrowseOriginal()
 {
 	QSettings settings;
 	QString path = QFileDialog::getOpenFileName(this, tr("Choose original image file"), settings.value("OriginalFile", "").toString(), "*.*");
@@ -40,7 +40,7 @@ void OpenDialog::onBrowseOriginal()
 	}
 }
 
-void OpenDialog::onBrowseProcessed()
+void OpenForCompareDialog::onBrowseProcessed()
 {
 	QSettings settings;
 	QString path = QFileDialog::getOpenFileName(this, tr("Choose processed image file"), settings.value("ProcessedFile", "").toString(), "*.*");
@@ -50,13 +50,13 @@ void OpenDialog::onBrowseProcessed()
 	}
 }
 
-void OpenDialog::onAccepted()
+void OpenForCompareDialog::onAccepted()
 {
 	this->saveRUD();
 	this->accept();
 }
 
-void OpenDialog::saveRUD()
+void OpenForCompareDialog::saveRUD()
 {
 	QSettings settings;
 	settings.setValue("OriginalFile", this->_ui.originalPath->text());

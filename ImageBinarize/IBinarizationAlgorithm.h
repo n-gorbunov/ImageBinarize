@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <map>
 #include <string>
 #include <vector>
 
@@ -8,13 +9,16 @@
 namespace ImageBinarize
 {
 
-	class IBinarizationAlgorithm
+	class BinarizationAlgorithm
 	{
 	protected:
-		virtual ~IBinarizationAlgorithm() {};
+		virtual ~BinarizationAlgorithm() {};
 		virtual void setOption(const std::string& name, double value) = 0;
 		virtual bool process(const Image &in, Image &out) = 0;
 		virtual std::string metaData() = 0;
+
+	protected:
+		std::map<std::string, double> _options;
 	};
 
 }
